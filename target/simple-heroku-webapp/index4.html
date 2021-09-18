@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <script>
+            import 'index3.html'
+            </script>
+        <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <script src="https://unpkg.com/react-redux@5.0.7/dist/react-redux.min.js"></script>
+        <title>Todo api</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+          <div id="mydiv2"></div>
+         
+          <script type="text/babel">
+    
+   
+    
+      class MyForm2 extends React.Component {
+       
+        constructor(props){
+super(props);
+
+this.state = {
+  id2 : '',
+  suc:'',
+  status:''
+}
+
+}
+        
+        
+     updateInput(event){
+this.setState({id2 : event.target.value})
+}
+ abc(){ 
+    // Changing state 
+    this.setState({suc : 
+                 "url"}) 
+  } 
+
+   delet(url) {
+       var res;
+    // Simple DELETE request with fetch
+    fetch(url, { method: 'DELETE' })
+        .then(response => response.text())
+.then(response => {this.setState({suc: response})})
+        //this.setState({suc : res});
+return "suc";
+}     
+  render() {
+  var abf;
+  
+
+    return (
+            
+            <div className="abc">
+      <form name="get_by_id" method="get" action="api/hello/get_id">
+        <label text="get_by_id"></label>
+        <input type="text" placeholder="id"  name="id" />
+        <input value ="get_by_id" type="submit"/>
+        </form>
+        <br/>
+         <input type="text" placeholder="id"  name="id2" onChange={this.updateInput.bind(this)} /> 
+    
+    <button onClick={this.delet.bind(this,"api/hello/delete/"+this.state.id2)}>delete</button>
+           
+           <p>{this.state.suc}</p>
+      
+      <br/>
+      <form name="get_all" method="get" action="api/hello/getall">
+              <input value ="get_All" type="submit"/>
+      </form>
+      </div>
+    );
+  }
+}
+ReactDOM.render(<MyForm2 />, document.getElementById('mydiv2'));
+
+    </script>
+         
+    </body>
+</html>

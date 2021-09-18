@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        
+            
+        
+        
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="mydiv2"></div>
+         
+          <script type="text/babel">
+              
+      class MyForm2 extends React.Component {
+         
+  render() {
+    return (
+      <form method="post" action="api/auth/login">
+      <label>First Name</label>
+        <input type="text"  name="un" />
+        <label>Password</label>
+        <input type="password"  name="ps" />
+        <input type="submit"/>
+      </form>
+    );
+  }
+}
+ReactDOM.render(<MyForm2 />, document.getElementById('mydiv2'));
+</script>
+        
+        
+        
+    </body>
+</html>

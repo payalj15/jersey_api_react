@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<title>
+
+
+
+</title>
+<style>
+
+.tab2 {
+            padding-left:40px;
+        }
+</style>
+
+</head>
+ 
+  <body>
+      
+  
+    <div id="mydiv"></div>
+    
+    <script type="text/babel">
+        
+    class MyForm2 extends React.Component {
+  
+  
+        
+      
+        
+        constructor(props){
+           super(props);
+      
+           this.state = {
+               fields: {},
+               errors: {}
+           }
+        }
+  
+  
+    
+        async handleValidation(e){
+            let fields = this.state.fields;
+            let errors = {};
+            let formIsValid = true;
+
+            
+			
+			if(!fields["fn"]){
+               formIsValid = false;
+               errors["fn"] = "Cannot be empty";
+               e.preventDefault();
+
+            }
+			
+            if(!fields["ps"]){
+               formIsValid = false;
+               errors["ps"] = "Cannot be empty";
+               e.preventDefault();
+
+            }
+            if(!fields["rl"]){
+               formIsValid = false;
+               errors["rl"] = "Cannot be empty";
+               e.preventDefault();
+
+            }
+            if(!fields["ln"]){
+               formIsValid = false;
+               
+               errors["ln"] = "Cannot be empty";
+               e.preventDefault();
+
+            }
+            if(!fields["em"]){
+               formIsValid = false;
+               
+              
+               errors["em"] = "Cannot be empty";
+               e.preventDefault();
+
+            }
+      
+            
+       
+            if(typeof fields["em"] !== "undefined"){
+               let lastAtPos = fields["Email"].lastIndexOf('@');
+               let lastDotPos = fields["Email"].lastIndexOf('.');
+
+               if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') == -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
+                  formIsValid = false;
+                  
+                  errors["email"] = "Email is not valid";
+                  e.preventDefault();
+
+                }
+           }  
+
+           this.setState({errors: errors});
+           return formIsValid;
+       }
+        
+       async contactSubmit(e) {
+            
+            if(this.handleValidation(e)){
+            	e.returnValue = true;	   
+            }else{
+               //e.preventDefault();
+                alert("Form has errors.")
+               
+            }
+      
+        }
+    
+        handleChange(field, e){         
+            let fields = this.state.fields;
+            fields[field] = e.target.value;        
+            this.setState({fields});
+            
+        }
+        
+        render() {
+    return (
+        <div className="MyForm2">    
+      <form method="post" name="contactform" className="contactform" onSubmit= {this.contactSubmit.bind(this)} action="api/auth/ins">
+     
+	 <label >First Name</label>
+	  <br/>
+        <input type="text"  name="fn" onChange={this.handleChange.bind(this, "fn")} value={this.state.fields["fn"]} />
+        <span style={{color: 'red'}}>{this.state.errors["fn"]}</span>
+        <br/>
+		<label>Password</label>
+		 <br/>
+        <input type="password"  name="ps" onChange={this.handleChange.bind(this, "ps")} value={this.state.fields["ps"]} />
+        <span style={{color: 'red'}}>{this.state.errors["ps"]}</span>
+		<br/>
+        <label>Last Name</label>
+		 <br/>
+        <input type="text"  name="ln" onChange={this.handleChange.bind(this, "ln")} value={this.state.fields["ln"]}/>
+        <span style={{color: 'red'}}>{this.state.errors["ln"]}</span>
+		<br/>
+        <label>Email</label>
+		 <br/>
+        <input type="text"  name="em" onChange={this.handleChange.bind(this, "em")} value={this.state.fields["em"]} />
+        <span style={{color: 'red'}}>{this.state.errors["em"]}</span>
+        <br/>
+		<label>Roles</label>
+		 <br/>
+        <input type="text"  name="rl" onChange={this.handleChange.bind(this, "rl")} value={this.state.fields["rl"]} />
+        <span style={{color: 'red'}}>{this.state.errors["rl"]}</span>
+        <br/>
+        <input value="insert" type="submit"/>
+      </form>
+      <br/>
+      <button><a href='index3.html' >Login</a></button>
+      </div>
+    );
+  }
+ 
+}
+ReactDOM.render(<MyForm2 />, document.getElementById('mydiv'));
+
+
+
+    </script>
+    
+    
+  
+  </body>
+</html>
